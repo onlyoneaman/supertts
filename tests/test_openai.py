@@ -1,13 +1,15 @@
 import unittest
 from unittest.mock import patch
+import supertts
 from supertts.providers import openai_provider
 
 class TestOpenAIProvider(unittest.TestCase):
     @patch('supertts.providers.openai_provider.speak')
     def test_openai_speak(self, mock_speak):
         """Test that OpenAI's speak function is called correctly."""
-        openai_provider.speak("Hello world")
-        mock_speak.assert_called_once_with("Hello world")
+        res=openai_provider.speak("Hello world", model="tts-1", voice="nova")
+        res.stream_to_file("artifacts/hello_world.mp3")
+        mock_speak.assert_called_once_with("Hello world", model="tts-1", voice="nova")
 
     def test_openai_voices(self):
         """Test that OpenAI's available_voices function is called correctly."""

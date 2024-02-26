@@ -1,8 +1,13 @@
 from supertts.providers import openai_provider, google_provider, azure_provider
 
-def tts(text, provider='openai'):
+def tts(
+    text: str,
+    model: str = None,
+    voice: str = None,
+    provider='openai',
+):
     if provider == 'openai':
-        return openai_provider.speak(text)
+        return openai_provider.speak(text, model=model, voice=voice)
     elif provider == 'google':
         return google_provider.speak(text)
     elif provider == 'azure':

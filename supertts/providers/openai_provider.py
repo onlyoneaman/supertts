@@ -10,8 +10,8 @@ def get_openai_api_key():
 
 def speak(
     text,
-    model="tts-1",
-    voice="alloy"
+    model: str = "tts-1",
+    voice: str = "alloy"
 ):
     voices = available_voices()
     if model not in ["tts-1", "tts-1-hd"]:
