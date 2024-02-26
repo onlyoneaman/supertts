@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import patch
-import supertts
+from supertts import SuperTTS
 from supertts.providers import openai_provider
 
 class TestOpenAIProvider(unittest.TestCase):
@@ -8,12 +8,12 @@ class TestOpenAIProvider(unittest.TestCase):
     def test_openai_speak(self, mock_speak):
         """Test that OpenAI's speak function is called correctly."""
         res=openai_provider.speak("Hello world", model="tts-1", voice="nova")
-        res.stream_to_file("artifacts/hello_world.mp3")
         mock_speak.assert_called_once_with("Hello world", model="tts-1", voice="nova")
 
     def test_openai_voices(self):
         """Test that OpenAI's available_voices function is called correctly."""
-        voices = openai_provider.available_voices()
+        supertts = SuperTTS()
+        voices = supertts.voices()
         expected_voices = [
             {"name": "echo", "gender": "male"},
             {"name": "alloy", "gender": "male"},

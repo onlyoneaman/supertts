@@ -1,1 +1,1 @@
-from supertts.tts import tts, voices
+from .super_tts import SuperTTS
