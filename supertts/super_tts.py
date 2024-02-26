@@ -23,9 +23,9 @@ class SuperTTS:
         """
         provider = provider or self.provider
         if provider == 'openai':
-            return openai_provider.tts(text, voice=voice, model=model)
+            return openai_provider.speak(text, voice=voice, model=model)
         elif provider == 'google':
-            return google_provider.tts(text)
+            return google_provider.speak(text)
         elif provider == 'azure':
             tts = AzureProvider()
             return tts.speak(text)
