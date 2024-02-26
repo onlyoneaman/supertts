@@ -21,15 +21,17 @@ pip install supertts
 
 TTS
 ```python
-import supertts
+from supertts import SuperTTS
 
+supertts = SuperTTS()
 supertts.tts("Hello World")
 ```
 
 Voices
 ```python
-import supertts
+from supertts import SuperTTS
 
+supertts = SuperTTS()
 supertts.voices()
 ```
 
@@ -42,7 +44,9 @@ Openai TTS
 - model: Model to use for TTS (Default: "tts-1")
 
 ```python
-import supertts
+from supertts import SuperTTS
+
+supertts = SuperTTS()
 
 supertts.tts("Hello World", model="tts-1-hd")
 
