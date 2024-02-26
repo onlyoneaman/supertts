@@ -1,21 +1,30 @@
 import unittest
 from unittest.mock import patch
+from supertts.providers import openai_provider
 
-@unittest.skipUnless("openai" in globals(), "OpenAI tests require the openai package")
 class TestOpenAIProvider(unittest.TestCase):
     @patch('supertts.providers.openai_provider.speak')
     def test_openai_speak(self, mock_speak):
         """Test that OpenAI's speak function is called correctly."""
-        from supertts.providers import openai_provider
         openai_provider.speak("Hello world")
         mock_speak.assert_called_once_with("Hello world")
 
-    @patch('supertts.providers.openai_provider.available_voices')
-    def test_openai_voices(self, mock_available_voices):
+    def test_openai_voices(self):
         """Test that OpenAI's available_voices function is called correctly."""
-        from supertts.providers import openai_provider
-        openai_provider.available_voices()
-        mock_available_voices.assert_called_once()
+        voices = openai_provider.available_voices()
+        expected_voices = [
+            {"name": "echo", "gender": "male"},
+            {"name": "alloy", "gender": "male"},
+            {"name": "fable", "gender": "male"},
+            {"name": "onyx", "gender": "male"},
+            {"name": "nova", "gender": "female"},
+            {"name": "shimmer", "gender": "male"},
+        ]
+
+        voices_tuples = [tuple(voice.items()) for voice in voices]
+        expected_voices_tuples = [tuple(voice.items()) for voice in expected_voices]
+
+        self.assertEqual(set(voices_tuples), set(expected_voices_tuples), "Available voices do not match expected")
 
 if __name__ == '__main__':
     unittest.main()

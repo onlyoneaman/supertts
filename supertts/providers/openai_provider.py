@@ -7,5 +7,30 @@ def speak(text):
     pass
 
 def available_voices():
-    # Return a list of available voices from OpenAI
-    pass
+    voices = [
+        {
+            "name": "alloy",
+            "gender": "male"
+        },
+        {
+            "name": "echo",
+            "gender": "male"
+        },
+        {
+            "name": "fable",
+            "gender": "male"
+        },
+        {
+            "name": "onyx",
+            "gender": "male"
+        },
+        {
+            "name": "nova",
+            "gender": "female"
+        },
+        {
+            "name": "shimmer",
+            "gender": "male"
+        },
+    ]
+    return voices

@@ -1,4 +1,4 @@
-from .providers import openai_provider, google_provider, azure_provider
+from supertts.providers import openai_provider, google_provider, azure_provider
 
 def tts(text, provider='openai'):
     if provider == 'openai':

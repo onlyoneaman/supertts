@@ -8,9 +8,10 @@ setup(
     packages=find_packages(),
     install_requires=[
         'requests',
+        'openai'
     ],
     extras_require={
-        'openai': ['openai'],
+        
     },
     description='A super TTS package supporting multiple providers.',
     long_description=open('README.md').read(),
