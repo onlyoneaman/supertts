@@ -19,6 +19,16 @@ pip install supertts
 
 ## Usage
 
+Add Keys to Environment Variables
+```bash
+# For Openai
+export OPENAI_API_KEY="YOUR_OPENAI_API_KEY"
+
+# For Azure
+export AZURE_KEY="YOUR_AZURE_KEY"
+export AZURE_REGION="YOUR_AZURE_REGION"
+```
+
 TTS
 ```python
 from supertts import SuperTTS
@@ -40,7 +50,7 @@ supertts.voices()
 #### tts
 
 Openai TTS
-- voice: Voice to use for TTS (Default: "alloy"
+- voice: Voice to use for TTS (Default: "alloy")
 - model: Model to use for TTS (Default: "tts-1")
 
 ```python
