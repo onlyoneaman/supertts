@@ -1,10 +1,13 @@
-# This is a placeholder for the actual OpenAI API client import and setup
-# Assume `openai_api_client` is a configured client for the OpenAI API
+from openai import OpenAI
 
 def speak(text):
-    # Implement the function to send text to OpenAI's TTS service
-    # and return the audio data
-    pass
+    client = OpenAI()
+    response = client.audio.speech.create(
+        model="tts-1",
+        voice="alloy",
+        input=text
+    )
+    return response
 
 def available_voices():
     voices = [
