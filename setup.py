@@ -2,10 +2,10 @@ from setuptools import setup, find_packages
 
 setup(
     name='supertts',
-    version='0.0.6',
+    version='0.0.7',
     author='Aman Kumar',
     author_email='2000.aman.sinha@gmail.com',
-    requires=[
+    install_requires=[
         'openai',
     ],
     packages=find_packages(),
