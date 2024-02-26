@@ -1,6 +1,9 @@
 from openai import OpenAI
 import os
 
+DEFAULT_MODEL = "tts-1"
+DEFAULT_VOICE = "alloy"
+
 def get_openai_api_key():
     """Retrieve the OPENAI_API_KEY environment variable."""
     api_key = os.getenv('OPENAI_API_KEY')
@@ -10,9 +13,11 @@ def get_openai_api_key():
 
 def speak(
     text,
-    model: str = "tts-1",
-    voice: str = "alloy"
+    model: str = DEFAULT_MODEL,
+    voice: str = DEFAULT_VOICE
 ):
+    model = DEFAULT_MODEL if model is None else model
+    voice = DEFAULT_VOICE if voice is None else voice
     voices = available_voices()
     if model not in ["tts-1", "tts-1-hd"]:
         raise ValueError(f"Invalid model: {model}")
