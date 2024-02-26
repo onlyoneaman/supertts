@@ -59,11 +59,11 @@ supertts.tts("Hello World", model="tts-1-hd", voice="nova")
 ## Supported TTS Engines
 
 - Openai
+- Azure
 
 ### Upcoming TTS Engines
 
 - Google
-- Azure
 
 ## License
 

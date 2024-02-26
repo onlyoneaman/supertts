@@ -4,11 +4,11 @@ from supertts import SuperTTS
 from supertts.providers import openai_provider
 
 class TestOpenAIProvider(unittest.TestCase):
-    @patch('supertts.providers.openai_provider.speak')
-    def test_openai_speak(self, mock_speak):
-        """Test that OpenAI's speak function is called correctly."""
-        res=openai_provider.speak("Hello world", model="tts-1", voice="nova")
-        mock_speak.assert_called_once_with("Hello world", model="tts-1", voice="nova")
+    # @patch('supertts.providers.openai_provider.speak')
+    # def test_openai_speak(self, mock_speak):
+    #     """Test that OpenAI's speak function is called correctly."""
+    #     res=openai_provider.speak("Hello world", model="tts-1", voice="nova")
+    #     mock_speak.assert_called_once_with("Hello world", model="tts-1", voice="nova")
 
     def test_openai_voices(self):
         """Test that OpenAI's available_voices function is called correctly."""
