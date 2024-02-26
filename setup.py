@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='supertts',
-    version='0.0.15',
+    version='0.0.16',
     author='Aman Kumar',
     author_email='2000.aman.sinha@gmail.com',
     install_requires=[
