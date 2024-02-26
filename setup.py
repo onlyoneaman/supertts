@@ -7,12 +7,9 @@ setup(
     author_email='2000.aman.sinha@gmail.com',
     packages=find_packages(),
     install_requires=[
-        'requests',
+        'requests>=2.20',
         'openai'
     ],
-    extras_require={
-        
-    },
     description='A super TTS package supporting multiple providers.',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
