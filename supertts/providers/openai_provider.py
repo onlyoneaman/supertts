@@ -11,7 +11,7 @@ def get_openai_api_key():
         raise EnvironmentError('The environment variable OPENAI_API_KEY is not set. Please set it to your OpenAI API key.')
     return api_key
 
-def speak(
+def synthesis(
     text,
     model: str = DEFAULT_MODEL,
     voice: str = DEFAULT_VOICE

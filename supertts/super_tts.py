@@ -23,12 +23,12 @@ class SuperTTS:
         """
         provider = provider or self.provider
         if provider == 'openai':
-            return openai_provider.speak(text, voice=voice, model=model)
+            return openai_provider.synthesis(text, voice=voice, model=model)
         elif provider == 'google':
-            return google_provider.speak(text)
+            return google_provider.synthesis(text)
         elif provider == 'azure':
             tts = AzureProvider()
-            return tts.speak(text)
+            return tts.synthesis(text)
         else:
             raise ValueError(f"Unsupported provider: {provider}")
 

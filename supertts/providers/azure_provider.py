@@ -1,6 +1,5 @@
 import azure.cognitiveservices.speech as speechsdk
 import os
-import importlib.util
 
 class AzureProvider:
     def __init__(
@@ -15,7 +14,7 @@ class AzureProvider:
         self.subscription_key = subscription_key
         self.region = region
 
-    def speak(
+    def synthesis(
         self, 
         text,
         voice_name=None,
@@ -25,17 +24,16 @@ class AzureProvider:
             subscription=self.subscription_key, 
             region=self.region
         )
+        speech_config.speech_synthesis_language = language
+        if voice_name is not None:
+            speech_config.speech_synthesis_voice_name = voice_name
 
         speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config)
-
-        speech_config.speech_synthesis_language = language
-        if voice_name:
-            speech_config.speech_synthesis_voice_name = voice_name
 
         result = speech_synthesizer.speak_text_async(text).get()
 
         if result.reason == speechsdk.ResultReason.SynthesizingAudioCompleted:
-            return result
+            return result.audio_data
         elif result.reason == speechsdk.ResultReason.Canceled:
             cancellation_details = result.cancellation_details
             print(f"Speech synthesis canceled: {cancellation_details.reason}")
