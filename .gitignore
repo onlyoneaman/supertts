@@ -1,0 +1,6 @@
+.env
+
+.code/
+.idea/
+
+**/*/__pycache__/
