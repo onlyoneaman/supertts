@@ -1,7 +1,17 @@
 from openai import OpenAI
+import os
+
+def get_openai_api_key():
+    """Retrieve the OPENAI_API_KEY environment variable."""
+    api_key = os.getenv('OPENAI_API_KEY')
+    if not api_key:
+        raise EnvironmentError('The environment variable OPENAI_API_KEY is not set. Please set it to your OpenAI API key.')
+    return api_key
 
 def speak(text):
-    client = OpenAI()
+    client = OpenAI(
+        api_key=get_openai_api_key()
+    )
     response = client.audio.speech.create(
         model="tts-1",
         voice="alloy",
