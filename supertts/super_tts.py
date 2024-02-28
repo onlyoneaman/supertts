@@ -27,11 +27,11 @@ class SuperTTS:
         :return: An audio stream or file.
         """
         provider = provider or self.provider
-        if provider == PROVIDERS["openai"]:
+        if provider == PROVIDERS["OPENAI"]:
             return self.openai.synthesis(text, voice=voice, model=model)
-        elif provider == PROVIDERS["google"]:
+        elif provider == PROVIDERS["GOOGLE"]:
             return self.google.synthesis(text)
-        elif provider == PROVIDERS["azure"]:
+        elif provider == PROVIDERS["AZURE"]:
             return self.azure.synthesis(text)
         else:
             raise ValueError(f"Unsupported provider: {provider}")
@@ -44,11 +44,11 @@ class SuperTTS:
         :return: A list of available voices.
         """
         provider = provider or self.provider
-        if provider == PROVIDERS["openai"]:
+        if provider == PROVIDERS["OPENAI"]:
             tts = self.openai
-        elif provider == PROVIDERS["google"]:
+        elif provider == PROVIDERS["GOOGLE"]:
             tts = self.google
-        elif provider == PROVIDERS["azure"]:
+        elif provider == PROVIDERS["AZURE"]:
             tts = self.azure
         else:
             raise ValueError(f"Unsupported provider: {provider}")

@@ -1,5 +1,6 @@
 import unittest
 from unittest.mock import patch
+import os
 from supertts import SuperTTS
 
 class TestOpenAIProvider(unittest.TestCase):
@@ -9,9 +10,10 @@ class TestOpenAIProvider(unittest.TestCase):
     #     res=openai_provider.speak("Hello world", model="tts-1", voice="nova")
     #     mock_speak.assert_called_once_with("Hello world", model="tts-1", voice="nova")
 
+    @unittest.skipIf(os.getenv('AZURE_KEY') is None, "Azure key not set.")
     def test_azure_voices(self):
         """Test that Azure available_voices function is called correctly."""
-        supertts = SuperTTS()
+        supertts = SuperTTS(provider="azure")
         voices = supertts.voices()
 
         # check if voices length is more than 0

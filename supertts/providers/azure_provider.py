@@ -7,12 +7,23 @@ class AzureProvider:
         subscription_key=os.getenv("AZURE_KEY"), 
         region=os.getenv("AZURE_REGION")
     ):
-        if not subscription_key:
-            raise ValueError("Azure subscription key not provided. Set the AZURE_KEY environment variable.")
-        if not region:
-            raise ValueError("Azure region not provided. Set the AZURE_REGION environment variable.")
-        self.subscription_key = subscription_key
-        self.region = region
+        self.valid = True
+        self.value_error = None
+        try:
+            if not subscription_key:
+                self.value_error = "Azure subscription key not provided. Set the AZURE_KEY environment variable."
+                raise ValueError("Azure subscription key not provided. Set the AZURE_KEY environment variable.")
+            if not region:
+                self.value_error = "Azure region not provided. Set the AZURE_REGION environment variable."
+                raise ValueError("Azure region not provided. Set the AZURE_REGION environment variable.")
+            self.subscription_key = subscription_key
+            self.region = region
+        except ValueError as e:
+            self.valid = False
+
+    def ensure_valid(self):
+        if not self.valid:
+            raise ValueError(self.value_error)
 
     def synthesis(
         self, 
@@ -20,6 +31,7 @@ class AzureProvider:
         voice_name=None,
         language="en-US"
     ):
+        self.ensure_valid()
         speech_config = speechsdk.SpeechConfig(
             subscription=self.subscription_key, 
             region=self.region

@@ -8,6 +8,11 @@ setup(
     install_requires=[
         'openai',
     ],
+    extras_require={
+        "test": [
+            "python-dotenv",
+        ]
+    },
     packages=find_packages(),
     description='A super TTS package supporting multiple providers.',
     long_description=open('README.md').read(),

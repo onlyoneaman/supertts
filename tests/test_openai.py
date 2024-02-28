@@ -1,6 +1,7 @@
 import unittest
 from unittest.mock import patch
 from supertts import SuperTTS
+import os
 
 class TestOpenAIProvider(unittest.TestCase):
     # @patch('supertts.providers.openai_provider.speak')
@@ -9,6 +10,7 @@ class TestOpenAIProvider(unittest.TestCase):
     #     res=openai_provider.speak("Hello world", model="tts-1", voice="nova")
     #     mock_speak.assert_called_once_with("Hello world", model="tts-1", voice="nova")
 
+    @patch.dict(os.environ, {"OPENAI_API_KEY": "test_value"})
     def test_openai_voices(self):
         """Test that OpenAI's available_voices function is called correctly."""
         supertts = SuperTTS()

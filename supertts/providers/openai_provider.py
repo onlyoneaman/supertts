@@ -32,18 +32,26 @@ VOICES = [
         ]
 
 class OpenAIProvider:
-    def __init__(self):
-        self.client = OpenAI(
-            api_key=self.get_openai_api_key()
-        )
+    def __init__(
+        self,
+        api_key=os.getenv("OPENAI_API_KEY")
+    ):
+        self.valid = True
+        self.valid_error = None
         self.voices = VOICES
+        try:
+            if api_key is None or api_key == "":
+                raise EnvironmentError('The environment variable OPENAI_API_KEY is not set. Please set it to your OpenAI API key.')
+            self.client = OpenAI(
+                api_key=api_key
+            )
+        except EnvironmentError as e:
+            self.valid = False
+            self.valid_error = "The environment variable OPENAI_API_KEY is not set. Please set it to your OpenAI API key."
 
-    def get_openai_api_key(self):
-        """Retrieve the OPENAI_API_KEY environment variable."""
-        api_key = os.getenv('OPENAI_API_KEY')
-        if not api_key:
-            raise EnvironmentError('The environment variable OPENAI_API_KEY is not set. Please set it to your OpenAI API key.')
-        return api_key
+    def ensure_valid(self):
+        if not self.valid:
+            raise ValueError(self.valid_error)
 
     def synthesis(
         self,
@@ -51,6 +59,7 @@ class OpenAIProvider:
         model: str = DEFAULT_MODEL,
         voice: str = DEFAULT_VOICE
     ):
+        self.ensure_valid()
         model = DEFAULT_MODEL if model is None else model
         voice = DEFAULT_VOICE if voice is None else voice
         voices = self.available_voices()
