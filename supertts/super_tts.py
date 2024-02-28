@@ -1,5 +1,6 @@
-from supertts.providers import openai_provider, google_provider, azure_provider
+from supertts.providers import openai_provider, google_provider
 from supertts.providers.azure_provider import AzureProvider
+from supertts.constants import PROVIDERS
 
 class SuperTTS:
     def __init__(self, provider='openai'):
@@ -22,11 +23,11 @@ class SuperTTS:
         :return: An audio stream or file.
         """
         provider = provider or self.provider
-        if provider == 'openai':
+        if provider == PROVIDERS["openai"]
             return openai_provider.synthesis(text, voice=voice, model=model)
-        elif provider == 'google':
+        elif provider == PROVIDERS["google"]:
             return google_provider.synthesis(text)
-        elif provider == 'azure':
+        elif provider == PROVIDERS["azure"]:
             tts = AzureProvider()
             return tts.synthesis(text)
         else:
@@ -40,11 +41,11 @@ class SuperTTS:
         :return: A list of available voices.
         """
         provider = provider or self.provider
-        if provider == 'openai':
+        if provider == PROVIDERS["openai"]:
             return openai_provider.available_voices()
-        elif provider == 'google':
+        elif provider == PROVIDERS["google"]:
             return google_provider.available_voices()
-        elif provider == 'azure':
+        elif provider == PROVIDERS["azure"]:
             tts = AzureProvider()
             return tts.available_voices()
         else:
