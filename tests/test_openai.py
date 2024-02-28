@@ -1,7 +1,6 @@
 import unittest
 from unittest.mock import patch
 from supertts import SuperTTS
-from supertts.providers import openai_provider
 
 class TestOpenAIProvider(unittest.TestCase):
     # @patch('supertts.providers.openai_provider.speak')

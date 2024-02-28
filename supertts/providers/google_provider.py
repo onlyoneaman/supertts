@@ -1,11 +1,11 @@
-# This is a placeholder for the actual OpenAI API client import and setup
-# Assume `openai_api_client` is a configured client for the OpenAI API
 
-def synthesis(text):
-    # Implement the function to send text to OpenAI's TTS service
-    # and return the audio data
-    pass
+class GoogleProvider:
+    def __init__(self):
+        pass
 
-def available_voices():
-    # Return a list of available voices from OpenAI
-    pass
+    def synthesis(self, text):
+        pass
+
+    def available_voices(self):
+        pass
+    
