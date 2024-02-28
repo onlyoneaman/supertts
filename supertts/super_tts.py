@@ -23,7 +23,7 @@ class SuperTTS:
         :return: An audio stream or file.
         """
         provider = provider or self.provider
-        if provider == PROVIDERS["openai"]
+        if provider == PROVIDERS["openai"]:
             return openai_provider.synthesis(text, voice=voice, model=model)
         elif provider == PROVIDERS["google"]:
             return google_provider.synthesis(text)
