@@ -38,7 +38,7 @@ class OpenAIProvider:
         )
         self.voices = VOICES
 
-    def get_openai_api_key():
+    def get_openai_api_key(self):
         """Retrieve the OPENAI_API_KEY environment variable."""
         api_key = os.getenv('OPENAI_API_KEY')
         if not api_key:
