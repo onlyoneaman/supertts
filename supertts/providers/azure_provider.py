@@ -27,8 +27,13 @@ class AzureProvider:
         speech_config.speech_synthesis_language = language
         if voice_name is not None:
             speech_config.speech_synthesis_voice_name = voice_name
+        
+        audio_config = None
 
-        speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config)
+        speech_synthesizer = speechsdk.SpeechSynthesizer(
+            speech_config=speech_config,
+            audio_config=audio_config
+        )
 
         result = speech_synthesizer.speak_text_async(text).get()
 
