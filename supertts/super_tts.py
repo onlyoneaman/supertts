@@ -1,5 +1,6 @@
 from supertts.providers import openai_provider, google_provider
 from supertts.providers.azure_provider import AzureProvider
+from supertts.providers.openai_provider import OpenAIProvider
 from supertts.constants import PROVIDERS
 
 class SuperTTS:
@@ -24,7 +25,8 @@ class SuperTTS:
         """
         provider = provider or self.provider
         if provider == PROVIDERS["openai"]:
-            return openai_provider.synthesis(text, voice=voice, model=model)
+            tts = OpenAIProvider()
+            return tts.synthesis(text, voice=voice, model=model)
         elif provider == PROVIDERS["google"]:
             return google_provider.synthesis(text)
         elif provider == PROVIDERS["azure"]:
@@ -42,11 +44,11 @@ class SuperTTS:
         """
         provider = provider or self.provider
         if provider == PROVIDERS["openai"]:
-            return openai_provider.available_voices()
+            tts = OpenAIProvider()
         elif provider == PROVIDERS["google"]:
             return google_provider.available_voices()
         elif provider == PROVIDERS["azure"]:
             tts = AzureProvider()
-            return tts.available_voices()
         else:
             raise ValueError(f"Unsupported provider: {provider}")
+        return tts.available_voices()
