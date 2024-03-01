@@ -74,6 +74,7 @@ supertts.tts("Hello World", model="tts-1-hd", voice="nova")
 ### Upcoming TTS Engines
 
 - Google
+- Eleven Labs
 
 ## License
 
